@@ -1,0 +1,95 @@
+<div class="container">
+ <div class="row">
+                <div class="col-md-12">
+                    <form #empolyform="ngForm" (ngSubmit)="saveEmployee()">
+                        <div class="card">
+                           <div class="card-header bg-info text-white" >
+                              <strong>Template Driven form with validation in angular 9 By Rangnath Mishra</strong>
+                          </div>
+                  
+                          <div class="card-body" >
+                              <div class="form-group"  >
+                                <label for="name" >Full Name</label>
+                                <input type="text" [class.is-invalid]="name.invalid && name.touched" required 
+                                id="name" name="name" [(ngModel)]="employee.name" #name="ngModel" class="form-control" placeholder="Enter Full Name" />
+                                <!-- <span class="text-danger" *ngIf="name.invalid && name.touched">Full Name is required</span> -->
+                                <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+                              </div>
+                           
+                              <div class="form-group">
+                                  <label for="email" >Email</label>
+                                  <input type="text" [class.is-invalid]="email.invalid && email.touched" id="email" name="email"
+                                  [(ngModel)]="employee.email" #email="ngModel" class="form-control" placeholder="Enter Email"
+                                  pattern="(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)" required/>
+                                  <span class="text-danger" *ngIf="email.errors?.required && email.touched">Email is required</span>
+                                  <span class="text-danger" *ngIf="email.errors?.pattern && email.touched">Email is invalid</span>
+                              </div>
+                  
+                              <div class="form-group">
+                                  <label for="phoneNumber" >Phone Number</label>
+                                  <input type="text" pattern="^\d{10}$" [class.is-invalid]="phoneNumber.invalid && phoneNumber.touched" id="phoneNumber" name="phoneNumber"
+                                   [(ngModel)]="employee.phoneNumber" #phoneNumber="ngModel"  class="form-control" placeholder="Enter Phone Number" required />
+                                  <span class="text-danger" *ngIf="phoneNumber.invalid && phoneNumber.touched">Phone number is required</span>
+                                   <span class="text-danger" *ngIf="phoneNumber.errors?.pattern && phoneNumber.touched">Phone No. is invalid</span>
+                              </div>
+                   
+                          
+                            <div class="form-group" >
+                              <label class="control-label">Gender</label>
+                              <div class="form-control">
+                                <label class="radio-margin">
+                                  <input type="radio" value="male"  name="gender" id="gender" [(ngModel)]="employee.gender" #gender="ngModel" required />
+                                  Male
+                                </label>
+                  
+                                <label class="radio-margin">
+                                  <input type="radio" value="female"  name="gender" id="gender" [(ngModel)]="employee.gender" #gender="ngModel" required />
+                                  Female
+                                </label>
+                              </div>
+                              <span class="text-danger" *ngIf="gender.invalid && gender.touched">Gender is required</span>
+                            </div>
+                  
+                            <div class="form-group" >
+                              <div class="form-control">
+                                <label class="radio-margin" >
+                                  <input type="checkbox"   name="isActive" id="isActive" [(ngModel)]="employee.isActive" #isActive="ngModel" required />
+                                  Is Active
+                                </label>
+                              </div>
+                              <span class="text-danger" *ngIf="isActive.invalid && isActive.touched">Is Active is required</span>
+                            </div>
+                  
+                            <div class="form-group" >
+                              <label for="department" > Department</label>
+                              <select  name="department" id="department" [(ngModel)]="employee.department" #department="ngModel" class="form-control" required>
+                                <option value="selected"  disabled>Please select</option>
+                                <option *ngFor="let dept of departments" [value]="dept.id">
+                                  {{dept.name}}
+                                </option>
+                               
+                              </select>
+                              <span class="text-danger" *ngIf="department.invalid && department.touched">Department is required</span>
+                            </div>
+                  
+                            <!-- <div class="row">
+                              <div class="form-group col-md-5" [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched">
+                                <label for="dateOfBirth" class="control-label">Date of Birth</label>
+                                <input required type="text" bsDatepicker [outsideClick]="false"  [bsConfig]="bsConfig" id="dateOfBirth"
+                                 name="dateOfBirth" [(ngModel)]="employee.dateOfBirth" #dateOfBirth="ngModel" class="form-control" placeholder="Enter Your Date of Birth" />
+                                <span class="text-danger" *ngIf="dateOfBirth.invalid && dateOfBirth.touched">Date is required</span>
+                              </div>
+                            </div> -->
+                         
+                          </div>
+                  
+                          <div class="card-footer bg-default text-white" >
+                            <button [disabled]="empolyform.invalid" type="submit" class="btn btn-info btn-sm">Save</button>
+                          </div>
+                  
+                      </div>
+                    </form>
+                    {{empolyform.value | json}} 
+                </div>
+            </div>
+            </div>
