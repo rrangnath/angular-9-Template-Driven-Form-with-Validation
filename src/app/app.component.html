@@ -29,7 +29,7 @@
                                   <label for="phoneNumber" >Phone Number</label>
                                   <input type="text" pattern="^\d{10}$" [class.is-invalid]="phoneNumber.invalid && phoneNumber.touched" id="phoneNumber" name="phoneNumber"
                                    [(ngModel)]="employee.phoneNumber" #phoneNumber="ngModel"  class="form-control" placeholder="Enter Phone Number" required />
-                                  <span class="text-danger" *ngIf="phoneNumber.invalid && phoneNumber.touched">Phone number is required</span>
+                                  <span class="text-danger" *ngIf="phoneNumber.errors.required && phoneNumber.touched">Phone number is required</span>
                                    <span class="text-danger" *ngIf="phoneNumber.errors?.pattern && phoneNumber.touched">Phone No. is invalid</span>
                               </div>
                    
